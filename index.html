@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dayoung Kim</title>
+<meta name="description" content="Dayoung Kim, elementary teacher and educational technology researcher studying how AI can help teachers read what student work really shows.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: a teacher's marked-up notebook. Graph-paper ground, ink text, highlighter and margin notes used only where a reading is being made. */
+  --paper: #f7f6f1;
+  --grid: rgba(40, 62, 92, 0.06);
+  --card: #ffffff;
+  --ink: #1d2733;
+  --muted: #5b6672;
+  --rule: #dcdcd3;
+  --accent: #2b5d8f;
+  --highlight: #ffe47a;
+  --note: #c2410c;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --hand: "Caveat", "Comic Sans MS", cursive;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14181d;
+    --grid: rgba(180, 200, 230, 0.05);
+    --card: #1b2128;
+    --ink: #e7e9ec;
+    --muted: #9ba5b0;
+    --rule: #2c343d;
+    --accent: #8fb8e6;
+    --highlight: #6b5a12;
+    --note: #f29a6b;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #14181d;
+  --grid: rgba(180, 200, 230, 0.05);
+  --card: #1b2128;
+  --ink: #e7e9ec;
+  --muted: #9ba5b0;
+  --rule: #2c343d;
+  --accent: #8fb8e6;
+  --highlight: #6b5a12;
+  --note: #f29a6b;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.page { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+/* Top bar */
+.top {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px;
+  padding: 22px 0; border-bottom: 1px solid var(--rule);
+}
+.top .name { font-family: var(--display); font-size: 20px; font-weight: 600; color: var(--ink); text-decoration: none; }
+.top nav { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+.top nav a { font-family: var(--mono); font-size: 13px; color: var(--muted); text-decoration: none; }
+.top nav a:hover { color: var(--accent); }
+
+/* Hero */
+.hero {
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 56px; align-items: center;
+  padding: 72px 0 64px;
+}
+.kicker { font-family: var(--mono); font-size: 13px; color: var(--muted); margin: 0 0 18px; letter-spacing: 0.02em; }
+h1 {
+  font-family: var(--display); font-weight: 500; font-size: clamp(38px, 5.2vw, 60px);
+  line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 24px; text-wrap: balance;
+}
+.mark {
+  background-image: linear-gradient(transparent 58%, var(--highlight) 58%, var(--highlight) 92%, transparent 92%);
+  background-repeat: no-repeat; background-size: 100% 100%;
+  padding: 0 2px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .mark { animation: sweep 900ms 250ms cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes sweep { from { background-size: 30% 100%; } to { background-size: 100% 100%; } }
+}
+.bio { font-size: 18px; max-width: 34em; margin: 0 0 26px; color: var(--ink); }
+.bio strong { font-weight: 600; }
+.links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; font-size: 15px; }
+.links .email { font-family: var(--mono); font-size: 14px; }
+.btn {
+  font-family: var(--mono); font-size: 12px; cursor: pointer;
+  background: var(--card); color: var(--ink); border: 1px solid var(--rule); border-radius: 4px; padding: 4px 9px;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Case card: the signature exhibit */
+.case {
+  background: var(--card); border: 1px solid var(--rule); border-radius: 8px;
+  box-shadow: 0 1px 0 var(--rule), 0 18px 40px -24px rgba(20, 30, 45, 0.35);
+  padding: 22px 22px 18px; position: relative;
+}
+.case-label { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 14px; }
+.artifacts { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.artifact { border: 1px dashed var(--rule); border-radius: 6px; padding: 12px; min-width: 0; }
+.artifact h3 { font-family: var(--mono); font-weight: 500; font-size: 11.5px; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; margin: 0 0 8px; }
+.artifact svg { width: 100%; max-width: 380px; height: auto; display: block; margin: 0 auto; }
+.artifact svg text { font-family: var(--body); font-size: 11px; fill: var(--ink); }
+.artifact svg .lab { font-family: var(--mono); font-size: 9px; fill: var(--muted); letter-spacing: 0.06em; }
+.artifact svg .box { fill: none; stroke: var(--ink); stroke-width: 1.3; }
+.artifact svg .arrow { stroke: var(--ink); stroke-width: 1.3; fill: none; }
+.artifact svg .ok { fill: var(--accent); }
+.script { font-family: var(--hand); font-size: 23px; line-height: 1.2; color: var(--ink); margin: 0; }
+.script .bad { background-image: linear-gradient(transparent 60%, var(--highlight) 60%); }
+.readings { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+.reading { border-radius: 6px; padding: 10px 12px; font-size: 14px; line-height: 1.45; }
+.reading .who { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; }
+.reading.ai { background: color-mix(in srgb, var(--muted) 10%, transparent); }
+.reading.ai .who { color: var(--muted); }
+.reading.teacher { background: color-mix(in srgb, var(--note) 10%, transparent); }
+.reading.teacher .who { color: var(--note); }
+.case-foot { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+
+/* Sections */
+section { padding: 64px 0 8px; scroll-margin-top: 12px; }
+.sec-head { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; }
+.sec-head h2 {
+  font-family: var(--display); font-weight: 500; font-size: 30px; line-height: 1.15; margin: 0; text-wrap: balance;
+}
+.sec-head .lead { margin: 0; max-width: 62ch; color: var(--muted); }
+.sec-body { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; margin-top: 28px; }
+.sec-body > :first-child:empty { display: block; }
+h3 { font-size: 18px; font-weight: 600; line-height: 1.35; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+
+/* Questions */
+.questions { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.questions li {
+  background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 20px 22px;
+  font-family: var(--display); font-size: 21px; line-height: 1.35;
+}
+.questions .q { display: block; font-family: var(--mono); font-size: 12px; color: var(--note); margin-bottom: 8px; letter-spacing: 0.04em; }
+
+/* Projects */
+.projects { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--rule); }
+.project { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--rule); }
+.project .when { font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 3px; }
+.project .body { display: flex; flex-direction: column; gap: 8px; max-width: 68ch; }
+.project .where { font-size: 14px; color: var(--muted); }
+.ipo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 8px; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--card); }
+.ipo div { padding: 10px 12px; font-size: 14px; line-height: 1.4; border-right: 1px solid var(--rule); }
+.ipo div:last-child { border-right: 0; }
+.ipo span { display: block; font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2px; }
+
+/* Works */
+.works h4 { font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+.works h4:not(:first-child) { margin-top: 32px; }
+.works ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+.works li { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 16px; font-size: 15.5px; line-height: 1.55; }
+.works .yr { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 2px; font-variant-numeric: tabular-nums; }
+.works .me { font-weight: 600; }
+.tag { font-family: var(--mono); font-size: 11px; color: var(--muted); border: 1px solid var(--rule); border-radius: 3px; padding: 0 5px; white-space: nowrap; }
+
+/* Classroom */
+.classroom { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.classroom .prose { display: flex; flex-direction: column; gap: 14px; max-width: 62ch; }
+blockquote {
+  margin: 0; background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 24px 26px;
+  position: relative;
+}
+blockquote p { font-family: var(--display); font-style: italic; font-size: 23px; line-height: 1.35; }
+blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
+.margin-note { font-family: var(--hand); font-size: 20px; color: var(--note); line-height: 1.2; margin-top: 14px; }
+
+/* Rows */
+.rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.rows li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 20px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.rows .what { font-weight: 600; font-size: 15.5px; }
+.rows .when { font-family: var(--mono); font-size: 13px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.rows .detail { grid-column: 1 / -1; color: var(--muted); font-size: 14.5px; }
+
+.chips { display: flex; flex-direction: column; gap: 14px; }
+.chips div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; align-items: baseline; }
+.chips b { font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.chips ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.chips li { font-size: 14px; background: var(--card); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 11px; }
+
+/* Contact */
+.contact { padding: 72px 0 40px; }
+.contact-card {
+  background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 34px 36px;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: center;
+}
+.contact-card h2 { font-family: var(--display); font-weight: 500; font-size: 30px; margin: 0 0 8px; }
+.contact-card p { color: var(--muted); max-width: 52ch; }
+.contact-card .meta { font-size: 14px; margin-top: 12px; }
+.contact-card .links { justify-content: flex-end; }
+.foot { font-family: var(--mono); font-size: 12px; color: var(--muted); padding: 24px 0 48px; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-top: 48px; }
+  .sec-head, .sec-body { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .sec-body { margin-top: 20px; }
+  .classroom { grid-template-columns: minmax(0, 1fr); }
+  .contact-card { grid-template-columns: minmax(0, 1fr); }
+  .contact-card .links { justify-content: flex-start; }
+}
+@media (max-width: 560px) {
+  .page { padding: 0 18px; }
+  body { font-size: 16px; }
+  .artifacts, .readings, .questions { grid-template-columns: minmax(0, 1fr); }
+  .project { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .works li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .ipo { grid-template-columns: minmax(0, 1fr); }
+  .ipo div { border-right: 0; border-bottom: 1px solid var(--rule); }
+  .ipo div:last-child { border-bottom: 0; }
+  .chips div { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .rows li { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ===== Layout v3: sticky profile sidebar + one view per menu item ===== */
+.shell { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+.topbar { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--rule); }
+.topbar .shell { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; padding-top: 16px; padding-bottom: 16px; }
+.brand { font-family: var(--display); font-size: 20px; font-weight: 600; color: var(--ink); text-decoration: none; }
+.menu { display: flex; flex-wrap: wrap; gap: 4px; }
+.menu a { font-family: var(--mono); font-size: 13px; color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 6px; }
+.menu a:hover { color: var(--accent); }
+.menu a[aria-current="page"] { color: var(--ink); background: var(--card); box-shadow: inset 0 0 0 1px var(--rule); }
+.layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 56px; padding-top: 44px; }
+.profile { position: sticky; top: 96px; align-self: start; display: flex; flex-direction: column; gap: 14px; }
+.avatar { width: 168px; height: 168px; border-radius: 50%; overflow: hidden; position: relative; background: var(--card); box-shadow: 0 0 0 1px var(--rule), 0 14px 30px -18px rgba(20,30,45,.45); }
+.avatar img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; }
+.avatar .initials { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-size: 54px; color: var(--accent);
+  background: radial-gradient(circle at 30% 25%, color-mix(in srgb, var(--highlight) 70%, transparent), transparent 60%), var(--card); }
+.profile h2 { font-family: var(--display); font-weight: 600; font-size: 24px; line-height: 1.15; margin: 4px 0 0; }
+.profile .role { font-size: 14px; color: var(--muted); margin-top: 4px; }
+.facts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; font-size: 14px; }
+.facts li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 8px; align-items: start; }
+.facts svg { width: 15px; height: 15px; margin-top: 3px; stroke: var(--muted); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.facts a { color: var(--ink); text-decoration: none; }
+.facts a:hover { color: var(--accent); text-decoration: underline; }
+.facts .linkbtn { all: unset; cursor: pointer; color: var(--ink); }
+.facts .linkbtn:hover { color: var(--accent); text-decoration: underline; }
+.facts .linkbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.profile .note { font-family: var(--hand); font-size: 20px; color: var(--note); line-height: 1.15; margin-top: 4px; }
+.view { padding-bottom: 72px; min-width: 0; }
+.view[hidden] { display: none; }
+.view > h1, .view-title { font-family: var(--display); font-weight: 500; font-size: clamp(34px, 4.4vw, 50px); line-height: 1.1; letter-spacing: -0.015em; margin: 0 0 18px; text-wrap: balance; }
+.view-title { font-size: clamp(30px, 3.6vw, 40px); }
+.lead2 { color: var(--muted); max-width: 62ch; margin: 0 0 28px; font-size: 17px; }
+.home-bio { font-size: 18px; max-width: 40em; margin: 0 0 30px; }
+.view .case { margin: 0 0 8px; }
+.case .artifacts { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+.subhead { font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 40px 0 14px; }
+.next { display: inline-flex; gap: 8px; align-items: center; margin-top: 28px; font-family: var(--mono); font-size: 13px; }
+.foot { border-top: 1px solid var(--rule); margin-top: 8px; }
+@media (max-width: 900px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-top: 28px; }
+  .profile { position: static; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 4px 18px; align-items: center; }
+  .avatar { width: 96px; height: 96px; grid-row: span 2; }
+  .avatar .initials { font-size: 32px; }
+  .facts { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; gap: 8px 18px; margin-top: 10px; }
+  .profile .note { display: none; }
+}
+@media (max-width: 560px) {
+  .shell { padding: 0 18px; }
+  .view .case { margin: 0 0 8px; }
+.case .artifacts { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="shell">
+    <a class="brand" href="#home">Dayoung Kim</a>
+    <nav class="menu" aria-label="Pages">
+      <a href="#home">Home</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#classroom">Classroom</a>
+      <a href="#teaching">Teaching &amp; CV</a>
+    </nav>
+  </div>
+</header>
+
+<div class="shell layout">
+  <aside class="profile" aria-label="Profile">
+    <div class="avatar">
+      <span class="initials" aria-hidden="true">DK</span>
+      <!-- To add your photo: upload profile.jpg next to this file. -->
+      <img src="profile.jpg" alt="Portrait of Dayoung Kim" onerror="this.remove()">
+    </div>
+    <div>
+      <h2>Dayoung Kim</h2>
+      <p class="role">Elementary teacher · EdTech researcher</p>
+    </div>
+    <ul class="facts">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Daegu, Republic of Korea</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-5 9 5-9 5-9-5z"/><path d="M7 12.5V17c3 2 7 2 10 0v-4.5"/></svg><span>Namdaegu Elementary School</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V8l8-4 8 4v11"/><path d="M9 19v-6h6v6"/></svg><span>M.Ed., Daegu National University of Education</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span><button class="linkbtn" type="button" data-email="rlaekdud527@gmail.com">rlaekdud527@gmail.com</button></span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg><span><a href="https://www.linkedin.com/in/dayoung-kim-5a80653b1">LinkedIn</a></span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span>Korean · English (IELTS 8.0)</span></li>
+    </ul>
+    <p class="note">reading students' thinking, one artifact at a time</p>
+  </aside>
+
+  <main>
+    <section class="view" id="view-home" data-view="home" aria-label="Home">
+      <h1>Helping teachers read what student work <span class="mark">really shows</span>.</h1>
+      <p class="home-bio">I teach sixth grade at Namdaegu Elementary School in Daegu and study how AI can help teachers interpret students' work: what it supports, what it doesn't, and what to ask next.</p>
+      <figure class="case" aria-labelledby="case-cap">
+        <p class="case-label" id="case-cap">One student, two artifacts, two readings</p>
+        <div class="artifacts">
+          <div class="artifact">
+            <h3>Design drawing</h3>
+            <svg viewBox="0 2 200 92" role="img" aria-label="A drawing showing a button labeled input, a Raspberry Pi labeled processing, and an LED labeled output, connected by arrows.">
+              <rect class="box" x="4" y="38" width="52" height="34" rx="4"/>
+              <text x="30" y="59" text-anchor="middle">Button</text>
+              <text class="lab" x="30" y="86" text-anchor="middle">INPUT</text>
+              <rect class="box" x="74" y="38" width="56" height="34" rx="4"/>
+              <text x="102" y="53" text-anchor="middle">Raspberry</text>
+              <text x="102" y="65" text-anchor="middle">Pi</text>
+              <text class="lab" x="102" y="86" text-anchor="middle">PROCESSING</text>
+              <rect class="box" x="148" y="38" width="48" height="34" rx="4"/>
+              <text x="172" y="59" text-anchor="middle">LED</text>
+              <text class="lab" x="172" y="86" text-anchor="middle">OUTPUT</text>
+              <path class="arrow" d="M57 55 H71 M67 51 L72 55 L67 59"/>
+              <path class="arrow" d="M131 55 H145 M141 51 L146 55 L141 59"/>
+              <circle class="ok" cx="190" cy="14" r="7"/>
+              <path d="M186.5 14 L189 16.5 L193.5 11.5" stroke="#fff" stroke-width="1.6" fill="none"/>
+            </svg>
+          </div>
+          <div class="artifact">
+            <h3>Written explanation</h3>
+            <p class="script">"When I press the button, <span class="bad">the sensor processes the data</span> and turns the light on."</p>
+          </div>
+        </div>
+        <div class="readings">
+          <div class="reading ai"><span class="who">AI reading</span>Understands input, processing, and output.</div>
+          <div class="reading teacher"><span class="who">Teacher reading</span>Evidence conflicts. Ask: how is collecting data different from processing it?</div>
+        </div>
+        <p class="case-foot">A case from my study comparing AI and human interpretations of 12 students' work. The written explanation is paraphrased for illustration.</p>
+      </figure>
+      <p class="subhead">Questions I want to answer</p>
+      <p class="lead2">When evidence was ambiguous or conflicting, the AI in my study tended to call it full understanding. Telling it to withhold judgment was not enough. So my next work asks:</p>
+      <ol class="questions">
+          <li><span class="q">Question 1</span>How should AI present evidence, uncertainty, and conflicts across student work so that teachers make well-supported judgments?</li>
+          <li><span class="q">Question 2</span>How do teachers decide whether to accept, revise, or hold an AI interpretation until more evidence is available?</li>
+        </ol>
+      <a class="next" href="#research">See my research →</a>
+    </section>
+
+    <section class="view" id="view-research" data-view="research" aria-label="Research" hidden>
+      <h2 class="view-title">Research</h2>
+      <p class="lead2">Four studies, each starting from something I noticed in a classroom.</p>
+      <div class="projects">
+          <article class="project">
+            <p class="when">2026–now</p>
+            <div class="body">
+              <h3>Abductive reasoning-based AI literacy</h3>
+              <p class="where">KOFAC CORE LAB Teacher Research Project · Participating researcher</p>
+              <p>With a five-member teacher team, I co-develop and validate a program in which elementary students trace AI-related social issues back to the technical principles behind them, through expert review and a quasi-experimental mixed-methods study.</p>
+            </div>
+          </article>
+          <article class="project">
+            <p class="when">2026</p>
+            <div class="body">
+              <h3>Generative AI for interpreting learning evidence</h3>
+              <p class="where">With Prof. Panwoo Park</p>
+              <p>I built a framework for using generative AI to interpret student artifacts and compared its readings with human ones across 12 students. The AI captured the components students used but overestimated their understanding when evidence was unclear. AI should assist, not replace, teacher judgment.</p>
+            </div>
+          </article>
+          <article class="project">
+            <p class="when">2024–2026</p>
+            <div class="body">
+              <h3>Concept-based inquiry in physical computing</h3>
+              <p class="where">M.Ed. thesis · Advisor: Prof. Panwoo Park</p>
+              <p>A 16-lesson Raspberry Pi program built around one transferable concept. In a quasi-experiment with 24 gifted sixth graders, students showed significant gains in creative problem-solving, and their work showed the concept applied to new problems.</p>
+              <div class="ipo" aria-label="The organizing concept of the program">
+                <div><span>Input</span>Sensors and buttons receive information</div>
+                <div><span>Processing</span>Conditions and code transform it</div>
+                <div><span>Output</span>LEDs, sound, and motors respond</div>
+              </div>
+            </div>
+          </article>
+          <article class="project">
+            <p class="when">2025</p>
+            <div class="body">
+              <h3>AI Digital Textbook functions for inquiry</h3>
+              <p class="where">With Prof. Wooyeol Kim</p>
+              <p>I proposed AI Digital Textbook functions, such as inquiry question support and automatic grouping, to support inquiry-based learning in elementary classrooms.</p>
+            </div>
+          </article></div>
+      <a class="next" href="#publications">Publications →</a>
+    </section>
+
+    <section class="view" id="view-publications" data-view="publications" aria-label="Publications" hidden>
+      <h2 class="view-title">Publications &amp; presentations</h2>
+      <p class="lead2">All papers are written in Korean.</p>
+      <div class="works">
+          <h4>Journal articles</h4>
+          <ul>
+            <li><span class="yr">in press</span><span><span class="me">Kim, D.</span>, &amp; Park, P. Development and application of a physical computing education program based on concept-based inquiry learning to enhance elementary students' creative problem-solving ability. <em>Intelligent Information Convergence and Future Education</em>.</span></li>
+            <li><span class="yr">2026</span><span><span class="me">Kim, D.</span>, &amp; Park, P. Exploring a generative AI-based framework for interpreting learning evidence in elementary physical computing: An input–processing–output perspective. <em>The Korean Association of Information Education Research Journal, 4</em>(2), 295–302.</span></li>
+            <li><span class="yr">2025</span><span><span class="me">Kim, D.</span>, &amp; Kim, W. A study on expanding AI Digital Textbook (AIDT) functions for supporting inquiry-based learning. <em>The Korean Association of Information Education Research Journal, 3</em>(1), 83–90.</span></li>
+          </ul>
+          <h4>Book in preparation</h4>
+          <ul>
+            <li><span class="yr">in prep.</span><span>Song, Y. S., Jung, S., <span class="me">Kim, D.</span>, Son, J., Song, Y. C., &amp; Choi, G. <em>Learning strategies for the AI era: From microlearning to self-directed learning</em>.</span></li>
+          </ul>
+          <h4>Presentations</h4>
+          <ul>
+            <li><span class="yr">2026</span><span>Park, J., Jung, H., Han, Y., Jung, J., &amp; <span class="me">Kim, D.</span> <em>Development of an abductive reasoning-based AI literacy education program</em> <span class="tag">Poster</span> CORE LAB Midterm Evaluation, KOFAC.</span></li>
+            <li><span class="yr">2026</span><span><span class="me">Kim, D.</span>, &amp; Park, P. <em>Exploring patterns in generative AI's interpretation of learning evidence in elementary physical computing</em> <span class="tag">Poster</span> Summer Conference, Korean Association of Information Education.</span></li>
+            <li><span class="yr">2026</span><span><span class="me">Kim, D.</span> <em>The effect of a physical computing education program applying concept-based inquiry learning on elementary students' creative problem-solving skills</em> <span class="tag">Paper</span> Academic Seminar, Institute of Elementary Education, DNUE.</span></li>
+            <li><span class="yr">2025</span><span><span class="me">Kim, D.</span>, &amp; Kim, W. <em>A study on expanding AI Digital Textbook (AIDT) functions for supporting inquiry-based learning</em> <span class="tag">Poster</span> Winter Conference, Korean Association of Information Education.</span></li>
+          </ul>
+        </div>
+      <a class="next" href="#classroom">From the classroom →</a>
+    </section>
+
+    <section class="view" id="view-classroom" data-view="classroom" aria-label="Classroom" hidden>
+      <h2 class="view-title">From the classroom</h2>
+      <p class="lead2">My research questions come from teaching. Open-ended work is where students surprise me most, and where reading their thinking takes the most time.</p>
+      <div class="classroom">
+          <div class="prose">
+            <p>Each year I lead a grade-level team in co-designing four concept-based inquiry projects. We present plans and outcomes to the whole faculty and revise each project through their feedback.</p>
+            <p>In one project, students built a city in Minecraft for over a hundred people, shaped by the terrain and climate their group was given. One student used his science knowledge to mine local materials and make concrete. Another left wanting to become an archaeologist.</p>
+            <p>Giving feedback on open-ended work like this once took me two full days. That is the problem I want AI to help teachers with, without taking the reading away from them.</p>
+          </div>
+          <blockquote>
+            <p>"Teacher, you always say we're curious, but it's actually you who makes us inquisitive."</p>
+            <footer>A sixth grader, after the Minecraft city project</footer>
+            <p class="margin-note">the reason I do this work</p>
+          </blockquote>
+        </div>
+      <a class="next" href="#teaching">Teaching &amp; CV →</a>
+    </section>
+
+    <section class="view" id="view-teaching" data-view="teaching" aria-label="Teaching and CV" hidden>
+      <h2 class="view-title">Teaching, design &amp; service</h2>
+      <p class="lead2">Public school teacher since 2023, designing curricula and tools with teachers, researchers, and an EdTech company. Elementary Teacher Certificate, Grade I (2026).</p>
+      <div><ul class="rows">
+            <li><span class="what">Public Elementary School Teacher, Namdaegu Elementary School</span><span class="when">2023–now</span><span class="detail">Grade-level lead for concept-based inquiry projects with AI-supported materials, performance tasks, and formative assessment.</span></li>
+            <li><span class="what">Teacher Design Partner, VIDTOMI</span><span class="when">2024–now</span><span class="detail">Co-designing a self-directed microlearning platform with Prof. Young Soo Song; classroom-testing features and adding inquiry routines and mastery-based enrichment.</span></li>
+            <li><span class="what">Curriculum Developer, DNUE Gifted Education Center</span><span class="when">2024–2026</span><span class="detail">Co-developed and taught an AI-supported, inquiry-based CS curriculum for gifted elementary students.</span></li>
+            <li><span class="what">Contributor, AI Education Research Group, Korea Education and Research Information Service</span><span class="when">2024–2025</span><span class="detail">Co-developed and field-tested teacher guides for AI tools.</span></li>
+            <li><span class="what">Teacher Designer, ALL-CARE Project</span><span class="when">2024</span><span class="detail">Co-designed an award-winning AI-supported inquiry learning model.</span></li>
+            <li><span class="what">Invited Lecturer and School Consultant</span><span class="when">2024–now</span><span class="detail">Workshops on AI-supported, inquiry-based instruction for education offices and universities, including Korea National University of Education; an online Google Apps Script course for Korea National Open University.</span></li>
+            <li><span class="what">Founder and Mentor, Sustainable SW/AI Education Volunteer Program</span><span class="when">2023–now</span><span class="detail">A monthly SW/AI program for children in residential care, co-taught with preservice teachers.</span></li>
+          </ul>
+          <h4 style="font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 36px 0 12px;">Awards</h4>
+          <ul class="rows">
+            <li><span class="what">Superintendent's Award (team), Lesson Sharing Competition</span><span class="when">2026</span><span class="detail">Nambu Office of Education, Daegu</span></li>
+            <li><span class="what">Minister of Education Award (Top Prize), Digital Education Research Competition</span><span class="when">2024</span><span class="detail">For the ALL-CARE Project's AI-supported inquiry learning model</span></li>
+            <li><span class="what">Minister of Science and ICT Award (Top Prize), SW/AI Eduthon</span><span class="when">2021</span></li>
+            <li><span class="what">KOFAC President's Award (Second Place), SW/AI Eduthon</span><span class="when">2020</span></li>
+          </ul>
+          <h4 style="font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 36px 0 14px;">Methods &amp; tools</h4>
+          <div class="chips">
+            <div><b>Research</b><ul><li>Quasi-experimental design</li><li>ANCOVA (SPSS)</li><li>Mixed methods</li><li>Qualitative analysis</li><li>Expert validation</li></ul></div>
+            <div><b>Design</b><ul><li>ADDIE</li><li>Concept-based inquiry</li><li>Project-based learning</li><li>GRASPS performance tasks</li><li>UDL</li></ul></div>
+            <div><b>Building</b><ul><li>Python</li><li>Google Apps Script</li><li>Scratch</li><li>Minecraft Education</li><li>Raspberry Pi</li><li>Micro:bit</li></ul></div>
+          </div>
+        </div>
+    </section>
+
+    <p class="foot">Last updated November 2026</p>
+  </main>
+</div>
+
+<script>
+(function () {
+  var views = Array.prototype.slice.call(document.querySelectorAll('[data-view]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('.menu a'));
+  var names = views.map(function (v) { return v.dataset.view; });
+  function render(name) {
+    if (names.indexOf(name) < 0) name = 'home';
+    views.forEach(function (v) { v.hidden = v.dataset.view !== name; });
+    links.forEach(function (a) {
+      if (a.getAttribute('href') === '#' + name) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    try { window.scrollTo(0, 0); } catch (e) {}
+  }
+  function current() {
+    try { return (location.hash || '#home').slice(1); } catch (e) { return 'home'; }
+  }
+  // Handle in-page links in script, so they work even where the page runs inside a viewer.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var name = a.getAttribute('href').slice(1);
+    if (names.indexOf(name) < 0) return;
+    e.preventDefault();
+    render(name);
+    try { if (location.hash !== '#' + name) history.pushState(null, '', '#' + name); } catch (err) {}
+  });
+  window.addEventListener('hashchange', function () { render(current()); });
+  window.addEventListener('popstate', function () { render(current()); });
+  render(current());
+
+  document.querySelectorAll('[data-email]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var label = btn.textContent;
+      try {
+        navigator.clipboard.writeText(btn.dataset.email).then(function () {
+          btn.textContent = 'Copied!';
+          setTimeout(function () { btn.textContent = label; }, 1600);
+        }, function () {});
+      } catch (e) {}
+    });
+  });
+})();
+</script>
+</body>
+</html>
