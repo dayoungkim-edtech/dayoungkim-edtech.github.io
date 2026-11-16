@@ -288,6 +288,25 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
   .view .case { margin: 0 0 8px; }
 .case .artifacts { grid-template-columns: minmax(0, 1fr); }
 }
+
+.feature { margin: 30px 0 0; background:#fff; border:1px solid rgba(29,39,51,.12); padding:8px 8px 10px; }
+.feature img { display:block; width:100%; height:auto; }
+.feature figcaption, .proj figcaption { font-family: var(--mono); font-size: 11.5px; color: var(--muted); margin-top: 8px; line-height: 1.45; }
+.projects-head { margin: 48px 0 6px; font-family: var(--serif, 'Newsreader'), serif; font-size: 26px; font-weight: 500; }
+.projects-sub { color: var(--muted); margin: 0 0 26px; max-width: 62ch; }
+.timeline { list-style: none; margin: 0; padding: 0 0 0 26px; border-left: 2px solid rgba(43,93,143,.25); }
+.proj { position: relative; margin: 0 0 44px; }
+.proj::before { content:""; position:absolute; left:-34px; top:6px; width:12px; height:12px; border-radius:50%; background: var(--paper); border:2px solid var(--accent); }
+.proj .tag { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; color: var(--accent); text-transform: uppercase; }
+.proj h3 { font-family: 'Newsreader', serif; font-weight: 500; font-size: 22px; margin: 4px 0 2px; }
+.proj .ko { font-size: 13px; color: var(--muted); margin: 0 0 10px; }
+.proj p.desc { margin: 0 0 14px; max-width: 64ch; line-height: 1.6; }
+.proj .pics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.proj .pics.one { grid-template-columns: 1fr; max-width: 49%; }
+.proj figure { margin: 0; background:#fff; border:1px solid rgba(29,39,51,.12); padding:6px 6px 8px; }
+.proj figure img { display:block; width:100%; aspect-ratio: 4/3; object-fit: cover; }
+.consent-note { font-size: 12.5px; color: var(--muted); margin: -10px 0 0; }
+@media (max-width: 720px) { .proj .pics, .proj .pics.one { grid-template-columns: 1fr; max-width: none; } }
 </style>
 </head>
 <body>
@@ -397,7 +416,7 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
             <div class="body">
               <h3>Concept-based inquiry in physical computing</h3>
               <p class="where">M.Ed. thesis · Advisor: Prof. Panwoo Park</p>
-              <p>A 16-lesson Raspberry Pi program built around one transferable concept. In a quasi-experiment with 24 gifted sixth graders, students showed significant gains in creative problem-solving, and their work showed the concept applied to new problems.</p>
+              <p>A 16-lesson Raspberry Pi program built around one transferable concept. In a quasi-experiment with 24 gifted sixth graders (18 treatment, 6 comparison), the treatment group showed significant gains in creative problem-solving, and their work showed the concept applied to new problems.</p>
               <div class="ipo" aria-label="The organizing concept of the program">
                 <div><span>Input</span>Sensors and buttons receive information</div>
                 <div><span>Processing</span>Conditions and code transform it</div>
@@ -456,6 +475,121 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
             <p class="margin-note">the reason I do this work</p>
           </blockquote>
         </div>
+      <h3 class="projects-head">Inquiry projects, year by year</h3>
+      <p class="projects-sub">Four concept-based inquiry projects a year, each co-designed with my grade-level team and revised through whole-faculty feedback. Newest first.</p>
+      <ol class="timeline">
+        <li class="proj">
+          <span class="tag">2026 · Grade 6 · Fall</span>
+          <h3>Survive the Unknown:<br>Build a City for 100!</h3>
+          <p class="desc">Each group was dropped into a terrain and climate they did not choose. They studied how people around the world adapt to their environments, drew up a survival plan for their tribe, and built a city for over a hundred people in Minecraft Education.</p>
+          <div class="pics">
+            <figure><img src="img_mc_city.jpg" alt="A hillside town of wooden houses, stone stairs, and a waterfall built in Minecraft Education" loading="lazy"><figcaption>A mountain town shaped by the terrain and climate the group was given.</figcaption></figure>
+            <figure><img src="p2026f_city.jpg" alt="Sixth graders gathered around a screen showing their Minecraft build" loading="lazy"><figcaption>Gathering around a group's Minecraft build.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj">
+          <span class="tag">2026 · Grade 6 · Summer</span>
+          <h3>Inventions That Carry Value</h3>
+          <p class="ko">가치-잇(IT)는 발명</p>
+          <p class="desc">Students asked how values shape inventions, learned input–process–output by building micro:bit robots, then designed inventions for real people in their community, such as QR emergency-information tags for older adults.</p>
+          <div class="pics">
+            <figure><img src="p2026_build.jpg" alt="Sixth graders assembling robot kits together at a shared table" loading="lazy"><figcaption>Figuring out unfamiliar parts from the manual.</figcaption></figure>
+            <figure><img src="p2026_talk.jpg" alt="Four students discussing worksheets around a table" loading="lazy"><figcaption>Finding the values behind famous inventions.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj">
+          <span class="tag">2025 · Grade 1 · Winter</span>
+          <h3>Age Eight: Life Blooms with Imagination</h3>
+          <p class="ko">여덟 살, 상상으로 피어나는 인생은 아름다워</p>
+          <p class="desc">First graders found stories in their own lives and imaginations, tried telling them through voice, movement, and pictures, and worked in teams to stage puppet shows.</p>
+          <div class="pics one">
+            <figure><img src="p2025w_puppet.jpg" alt="First graders sitting on the floor in a circle around their painted backdrop" loading="lazy"><figcaption>Making a backdrop and rehearsing the puppet show.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj">
+          <span class="tag">2025 · Grade 1 · Fall</span>
+          <h3>A Promise to Protect the Future</h3>
+          <p class="ko">미래를 지키는 약속</p>
+          <p class="desc">First graders explored what they could do for the planet: sorting and reusing bottle caps, melting plastic into keyrings, a week of no-leftover lunches, and plogging around the neighborhood.</p>
+          <div class="pics">
+            <figure><img src="p2025_caps.jpg" alt="First graders sorting a big pile of colorful bottle caps on the gym floor" loading="lazy"><figcaption>Sorting bottle caps for reuse.</figcaption></figure>
+            <figure><img src="p2025_sort.jpg" alt="Children holding bowls of sorted bottle caps together" loading="lazy"><figcaption>Comparing what each team collected.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj">
+          <span class="tag">2025 · Grade 1 · Summer</span>
+          <h3>Eolssu! Korea</h3>
+          <p class="ko">얼쑤! 대한민국</p>
+          <p class="desc">Students asked what represents Korea and what those symbols mean, explored how people live through clothing, food, hanok houses, and traditional games, then became "Korea ambassadors" and ran an expo for the school.</p>
+          <div class="pics one">
+            <figure><img src="p2025su_draw.jpg" alt="First graders kneeling around a large shared drawing on the floor" loading="lazy"><figcaption>A team drawing of Korean culture.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj">
+          <span class="tag">2025 · Grade 1 · Spring</span>
+          <h3>Treasure Hunt at Our School</h3>
+          <p class="ko">우리학교 보물찾기</p>
+          <p class="desc">New first graders explored the people and places of their school, created class symbols, and worked out the rules that keep school life safe and fun, ending with a video introducing their school.</p>
+          <div class="pics one">
+            <figure><img src="p2025sp_library.jpg" alt="First graders browsing picture books in the school library" loading="lazy"><figcaption>Learning how to use the school library.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj">
+          <span class="tag">2024 · Grade 3 · Winter</span>
+          <h3>Turn Down the Noise!</h3>
+          <p class="ko">소리 프로젝트 · 소음을 줄이는 구조물 만들기</p>
+          <p class="desc">Starting from noise that bothered them at home and school, students asked why sound happens, how it travels, and when sound becomes noise. Then they built noise-reducing structures, such as quiet slippers for apartment floors, and tested them with a decibel meter.</p>
+        </li>
+        <li class="proj">
+          <span class="tag">2024 · Grade 3 · Fall</span>
+          <h3>Introducing My Family in 2054</h3>
+          <p class="ko">2054년, 나의 가족을 소개합니다!</p>
+          <p class="desc">Through the lens of change, students traced how family roles have shifted, imagined the families they hope for, and wrote about them so a reader could follow their experience.</p>
+          <div class="pics one">
+            <figure><img src="p2024f_wall.jpg" alt="Students reading a wall of their own questions on colored hexagon cards" loading="lazy"><figcaption>Students build the unit's question wall at the start.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj">
+          <span class="tag">2024 · Grade 3 · Summer</span>
+          <h3>Let's Build It Together! A Future City for Everyone</h3>
+          <p class="ko">함께 만들어요! 모두를 위한 미래도시</p>
+          <p class="desc">Students traced how transportation and communication have changed daily life, tried out emerging technologies, and designed transport and communication devices for a future city where people, animals, and nature can live together, such as a device that keeps animals safe in wildlife corridors.</p>
+          <div class="pics">
+            <figure><img src="p2024su_drone.jpg" alt="Third graders flying small drones in the classroom" loading="lazy"><figcaption>Trying out future transportation.</figcaption></figure>
+            <figure><img src="p2024su_city.jpg" alt="Third graders gathered around a laptop and a model board" loading="lazy"><figcaption>Testing a design with classmates.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj">
+          <span class="tag">2024 · Grade 3 · Spring</span>
+          <h3>Our Story of Nam-gu, Daegu</h3>
+          <p class="ko">우리가 알아보는 대구 남구 이야기</p>
+          <p class="desc">Students drew the hometown they imagined, learned to locate key places on real maps, and read local folktales and heritage sites for what they say about the community.</p>
+          <div class="pics">
+            <figure><img src="p2024s_map.jpg" alt="Students gathered at a whiteboard covered in their neighborhood drawings" loading="lazy"><figcaption>Comparing each other's hometown maps.</figcaption></figure>
+            <figure><img src="img_drawing_town.jpg" alt="A student's colored-pencil drawing of their neighborhood" loading="lazy"><figcaption>"The hometown I imagine."</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj">
+          <span class="tag">2023 · Grade 4 · Winter</span>
+          <h3>How Is Our Society Changing?</h3>
+          <p class="ko">사회 변화 프로젝트</p>
+          <p class="desc">Students investigated an aging society, the information age, and multiculturalism, graphed the trends, proposed policies, coded robots to help older adults, and ran a technology fair with generative AI and VR booths.</p>
+          <div class="pics">
+            <figure><img src="p2023_robot.jpg" alt="Fourth graders programming small robots on a floor map" loading="lazy"><figcaption>Programming a self-driving robot for rural seniors.</figcaption></figure>
+            <figure><img src="p2023_coding.jpg" alt="A student coding a small robot on a tablet" loading="lazy"><figcaption>Coding an elder-care robot on a tablet.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj">
+          <span class="tag">2023 · Grade 4 · Fall</span>
+          <h3>City Lights, Village Starlight</h3>
+          <p class="ko">도시의 불빛, 촌락의 별빛</p>
+          <p class="desc">When rural Gunwi County joined the city of Daegu in 2023, students asked how cities and villages depend on each other. They mapped each area's strengths, traded in a mock market, and designed better places to live in Minecraft.</p>
+          <div class="pics one">
+            <figure><img src="p2023f_map.jpg" alt="Two fourth graders placing sticky notes on a large map of Gunwi County" loading="lazy"><figcaption>Finding the centers of Gunwi County on the map.</figcaption></figure>
+          </div>
+        </li>
+      </ol>
+      <p class="consent-note">Photos shared with guardian consent. Faces and names are blurred.</p>
       <a class="next" href="#teaching">Teaching &amp; CV →</a>
     </section>
 
@@ -465,16 +599,16 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
       <div><ul class="rows">
             <li><span class="what">Public Elementary School Teacher, Namdaegu Elementary School</span><span class="when">2023–now</span><span class="detail">Grade-level lead for concept-based inquiry projects with AI-supported materials, performance tasks, and formative assessment.</span></li>
             <li><span class="what">Teacher Design Partner, VIDTOMI</span><span class="when">2024–now</span><span class="detail">Co-designing a self-directed microlearning platform with Prof. Young Soo Song; classroom-testing features and adding inquiry routines and mastery-based enrichment.</span></li>
-            <li><span class="what">Curriculum Developer, DNUE Gifted Education Center</span><span class="when">2024–2026</span><span class="detail">Co-developed and taught an AI-supported, inquiry-based CS curriculum for gifted elementary students.</span></li>
+            <li><span class="what">Curriculum Developer, DNUE Gifted Education Center</span><span class="when">2024–now</span><span class="detail">Co-developed and taught an AI-supported, inquiry-based CS curriculum for gifted elementary students.</span></li>
             <li><span class="what">Contributor, AI Education Research Group, Korea Education and Research Information Service</span><span class="when">2024–2025</span><span class="detail">Co-developed and field-tested teacher guides for AI tools.</span></li>
-            <li><span class="what">Teacher Designer, ALL-CARE Project</span><span class="when">2024</span><span class="detail">Co-designed an award-winning AI-supported inquiry learning model.</span></li>
+            <li><span class="what">Co-Investigator, ALL-CARE Project</span><span class="when">2024</span><span class="detail">Co-designed an AI courseware-based inquiry model for social studies; a mixed-methods study with 42 students found significant gains in collaborative problem solving.</span></li>
             <li><span class="what">Invited Lecturer and School Consultant</span><span class="when">2024–now</span><span class="detail">Workshops on AI-supported, inquiry-based instruction for education offices and universities, including Korea National University of Education; an online Google Apps Script course for Korea National Open University.</span></li>
             <li><span class="what">Founder and Mentor, Sustainable SW/AI Education Volunteer Program</span><span class="when">2023–now</span><span class="detail">A monthly SW/AI program for children in residential care, co-taught with preservice teachers.</span></li>
           </ul>
           <h4 style="font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 36px 0 12px;">Awards</h4>
           <ul class="rows">
             <li><span class="what">Superintendent's Award (team), Lesson Sharing Competition</span><span class="when">2026</span><span class="detail">Nambu Office of Education, Daegu</span></li>
-            <li><span class="what">Minister of Education Award (Top Prize), Digital Education Research Competition</span><span class="when">2024</span><span class="detail">For the ALL-CARE Project's AI-supported inquiry learning model</span></li>
+            <li><span class="what">Minister of Education Award (Top Prize), 18th Digital Education Research Competition</span><span class="when">2024</span><span class="detail">For the ALL-CARE Project's AI-supported inquiry learning model</span></li>
             <li><span class="what">Minister of Science and ICT Award (Top Prize), SW/AI Eduthon</span><span class="when">2021</span></li>
             <li><span class="what">KOFAC President's Award (Second Place), SW/AI Eduthon</span><span class="when">2020</span></li>
           </ul>
