@@ -303,6 +303,21 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
 .proj p.desc { margin: 0 0 14px; max-width: 64ch; line-height: 1.6; }
 .proj .pics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .proj .pics.one { grid-template-columns: 1fr; max-width: 49%; }
+.proj .pics.three { grid-template-columns: 1fr 1fr 1fr; }
+.proj p.desc em { font-style: italic; }
+.toc { margin: 0 0 34px; padding: 14px 0 4px; border-top: 1px solid rgba(0,0,0,.12); border-bottom: 1px solid rgba(0,0,0,.12); }
+    .toc-label { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #777; margin: 0 0 8px; }
+    .toc ol { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 32px; counter-reset: toc; }
+    .toc li { counter-increment: toc; break-inside: avoid; margin: 0 0 8px; }
+    .toc button { all: unset; cursor: pointer; font-size: 14.5px; color: var(--ink); line-height: 1.4; }
+    .toc button::before { display: inline-block; content: counter(toc, decimal-leading-zero); font-family: var(--mono); font-size: 11px; color: var(--accent); margin-right: 10px; }
+    .toc button { text-decoration: underline; text-decoration-color: rgba(43,93,143,.28); text-underline-offset: 4px; text-decoration-thickness: 1px; }
+    .toc button:hover, .toc button:focus-visible { color: var(--accent); text-decoration-color: var(--accent); }
+    @media (max-width: 640px) { .toc ol { columns: 1; } }
+.proj { scroll-margin-top: 80px; }
+
+.proj p.gist { font-weight: 600; color: var(--ink); margin: 2px 0 10px; max-width: 64ch; line-height: 1.5; }
+
 .proj figure { margin: 0; background:#fff; border:1px solid rgba(29,39,51,.12); padding:6px 6px 8px; }
 .proj figure img { display:block; width:100%; aspect-ratio: 4/3; object-fit: cover; }
 .consent-note { font-size: 12.5px; color: var(--muted); margin: -10px 0 0; }
@@ -318,6 +333,7 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
       <a href="#research">Research</a>
       <a href="#publications">Publications</a>
       <a href="#classroom">Classroom</a>
+      <a href="#community">Community</a>
       <a href="#teaching">Teaching &amp; CV</a>
     </nav>
   </div>
@@ -481,6 +497,7 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
         <li class="proj">
           <span class="tag">2026 · Grade 6 · Fall</span>
           <h3>Survive the Unknown:<br>Build a City for 100!</h3>
+          <p class="gist">Groups designed ways of life for climates and terrains they did not choose.</p>
           <p class="desc">Each group was dropped into a terrain and climate they did not choose. They studied how people around the world adapt to their environments, drew up a survival plan for their tribe, and built a city for over a hundred people in Minecraft Education.</p>
           <div class="pics">
             <figure><img src="img_mc_city.jpg" alt="A hillside town of wooden houses, stone stairs, and a waterfall built in Minecraft Education" loading="lazy"><figcaption>A mountain town shaped by the terrain and climate the group was given.</figcaption></figure>
@@ -491,16 +508,25 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
           <span class="tag">2026 · Grade 6 · Summer</span>
           <h3>Inventions That Carry Value</h3>
           <p class="ko">가치-잇(IT)는 발명</p>
+          <p class="gist">Students argued through value dilemmas before designing inventions for real people.</p>
           <p class="desc">Students asked how values shape inventions, learned input–process–output by building micro:bit robots, then designed inventions for real people in their community, such as QR emergency-information tags for older adults.</p>
           <div class="pics">
             <figure><img src="p2026_build.jpg" alt="Sixth graders assembling robot kits together at a shared table" loading="lazy"><figcaption>Figuring out unfamiliar parts from the manual.</figcaption></figure>
             <figure><img src="p2026_talk.jpg" alt="Four students discussing worksheets around a table" loading="lazy"><figcaption>Finding the values behind famous inventions.</figcaption></figure>
           </div>
         </li>
+        <li class="proj" id="gifted-algorithms">
+          <span class="tag">2026 · Gifted program, DNUE · Spring</span>
+          <h3>When Is a Greedy Choice a Good Strategy?</h3>
+          <p class="ko">영재교육원 알고리즘 탐구 수업</p>
+          <p class="gist">Students felt the need for an algorithm before they were given one, then worked out for themselves when greedy choices succeed and when they fail.</p>
+          <p class="desc">At the gifted education center of Daegu National University of Education, I co-designed the year's informatics curriculum with fellow instructors and designed and taught its algorithm unit for two classes: 20 students in Daegu over 12 sessions and 6 in Gyeongbuk over 8. Instead of opening with a definition, I gave students problems that grew larger and more repetitive, such as robot paths, navigation routes, coin change, reservation scheduling, and Kruskal's algorithm, so that solving them by hand began to feel inefficient. Their own questions after the first activity became the inquiry question for the unit. Students recorded strategies on paper first, compared them with peers, and tested them in simulations that made exhaustive and greedy search visible. They coded the coin-change rule in Python on Google Colab and adapted it to U.S. cents and even Zimbabwean dollars. They also met coin systems where the greedy rule breaks. Finally, they organized every case in one table and concluded that a greedy algorithm works only when its selection criterion fits the structure of the problem. <a href="https://prayer123333.my.canva.site/dahozletwgq" target="_blank" rel="noopener">Full portfolio →</a></p>
+        </li>
         <li class="proj">
           <span class="tag">2025 · Grade 1 · Winter</span>
           <h3>Age Eight: Life Blooms with Imagination</h3>
           <p class="ko">여덟 살, 상상으로 피어나는 인생은 아름다워</p>
+          <p class="gist">First graders turned stories from their own lives into team puppet shows.</p>
           <p class="desc">First graders found stories in their own lives and imaginations, tried telling them through voice, movement, and pictures, and worked in teams to stage puppet shows.</p>
           <div class="pics one">
             <figure><img src="p2025w_puppet.jpg" alt="First graders sitting on the floor in a circle around their painted backdrop" loading="lazy"><figcaption>Making a backdrop and rehearsing the puppet show.</figcaption></figure>
@@ -510,6 +536,7 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
           <span class="tag">2025 · Grade 1 · Fall</span>
           <h3>A Promise to Protect the Future</h3>
           <p class="ko">미래를 지키는 약속</p>
+          <p class="gist">First graders tested what they could actually do for the planet, from reusing bottle caps to plogging.</p>
           <p class="desc">First graders explored what they could do for the planet: sorting and reusing bottle caps, melting plastic into keyrings, a week of no-leftover lunches, and plogging around the neighborhood.</p>
           <div class="pics">
             <figure><img src="p2025_caps.jpg" alt="First graders sorting a big pile of colorful bottle caps on the gym floor" loading="lazy"><figcaption>Sorting bottle caps for reuse.</figcaption></figure>
@@ -520,6 +547,7 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
           <span class="tag">2025 · Grade 1 · Summer</span>
           <h3>Eolssu! Korea</h3>
           <p class="ko">얼쑤! 대한민국</p>
+          <p class="gist">First graders explored what represents Korea and shared it at an expo they ran.</p>
           <p class="desc">Students asked what represents Korea and what those symbols mean, explored how people live through clothing, food, hanok houses, and traditional games, then became "Korea ambassadors" and ran an expo for the school.</p>
           <div class="pics one">
             <figure><img src="p2025su_draw.jpg" alt="First graders kneeling around a large shared drawing on the floor" loading="lazy"><figcaption>A team drawing of Korean culture.</figcaption></figure>
@@ -529,6 +557,7 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
           <span class="tag">2025 · Grade 1 · Spring</span>
           <h3>Treasure Hunt at Our School</h3>
           <p class="ko">우리학교 보물찾기</p>
+          <p class="gist">New first graders learned their school by exploring it and making its rules their own.</p>
           <p class="desc">New first graders explored the people and places of their school, created class symbols, and worked out the rules that keep school life safe and fun, ending with a video introducing their school.</p>
           <div class="pics one">
             <figure><img src="p2025sp_library.jpg" alt="First graders browsing picture books in the school library" loading="lazy"><figcaption>Learning how to use the school library.</figcaption></figure>
@@ -538,12 +567,14 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
           <span class="tag">2024 · Grade 3 · Winter</span>
           <h3>Turn Down the Noise!</h3>
           <p class="ko">소리 프로젝트 · 소음을 줄이는 구조물 만들기</p>
+          <p class="gist">Students built noise-reducing structures and measured whether they worked.</p>
           <p class="desc">Starting from noise that bothered them at home and school, students asked why sound happens, how it travels, and when sound becomes noise. Then they built noise-reducing structures, such as quiet slippers for apartment floors, and tested them with a decibel meter.</p>
         </li>
         <li class="proj">
           <span class="tag">2024 · Grade 3 · Fall</span>
           <h3>Introducing My Family in 2054</h3>
           <p class="ko">2054년, 나의 가족을 소개합니다!</p>
+          <p class="gist">Students traced how families change and imagined the families they hope for.</p>
           <p class="desc">Through the lens of change, students traced how family roles have shifted, imagined the families they hope for, and wrote about them so a reader could follow their experience.</p>
           <div class="pics one">
             <figure><img src="p2024f_wall.jpg" alt="Students reading a wall of their own questions on colored hexagon cards" loading="lazy"><figcaption>Students build the unit's question wall at the start.</figcaption></figure>
@@ -553,6 +584,7 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
           <span class="tag">2024 · Grade 3 · Summer</span>
           <h3>Let's Build It Together! A Future City for Everyone</h3>
           <p class="ko">함께 만들어요! 모두를 위한 미래도시</p>
+          <p class="gist">Students designed transport and communication for a city shared by people, animals, and nature.</p>
           <p class="desc">Students traced how transportation and communication have changed daily life, tried out emerging technologies, and designed transport and communication devices for a future city where people, animals, and nature can live together, such as a device that keeps animals safe in wildlife corridors.</p>
           <div class="pics">
             <figure><img src="p2024su_drone.jpg" alt="Third graders flying small drones in the classroom" loading="lazy"><figcaption>Trying out future transportation.</figcaption></figure>
@@ -563,6 +595,7 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
           <span class="tag">2024 · Grade 3 · Spring</span>
           <h3>Our Story of Nam-gu, Daegu</h3>
           <p class="ko">우리가 알아보는 대구 남구 이야기</p>
+          <p class="gist">Students mapped their hometown and read its stories for what they say about the community.</p>
           <p class="desc">Students drew the hometown they imagined, learned to locate key places on real maps, and read local folktales and heritage sites for what they say about the community.</p>
           <div class="pics">
             <figure><img src="p2024s_map.jpg" alt="Students gathered at a whiteboard covered in their neighborhood drawings" loading="lazy"><figcaption>Comparing each other's hometown maps.</figcaption></figure>
@@ -573,6 +606,7 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
           <span class="tag">2023 · Grade 4 · Winter</span>
           <h3>How Is Our Society Changing?</h3>
           <p class="ko">사회 변화 프로젝트</p>
+          <p class="gist">Students studied an aging, digital, multicultural society and built tools to respond.</p>
           <p class="desc">Students investigated an aging society, the information age, and multiculturalism, graphed the trends, proposed policies, coded robots to help older adults, and ran a technology fair with generative AI and VR booths.</p>
           <div class="pics">
             <figure><img src="p2023_robot.jpg" alt="Fourth graders programming small robots on a floor map" loading="lazy"><figcaption>Programming a self-driving robot for rural seniors.</figcaption></figure>
@@ -583,6 +617,7 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
           <span class="tag">2023 · Grade 4 · Fall</span>
           <h3>City Lights, Village Starlight</h3>
           <p class="ko">도시의 불빛, 촌락의 별빛</p>
+          <p class="gist">When Gunwi joined Daegu, students explored how cities and villages depend on each other.</p>
           <p class="desc">When rural Gunwi County joined the city of Daegu in 2023, students asked how cities and villages depend on each other. They mapped each area's strengths, traded in a mock market, and designed better places to live in Minecraft.</p>
           <div class="pics one">
             <figure><img src="p2023f_map.jpg" alt="Two fourth graders placing sticky notes on a large map of Gunwi County" loading="lazy"><figcaption>Finding the centers of Gunwi County on the map.</figcaption></figure>
@@ -590,6 +625,116 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
         </li>
       </ol>
       <p class="consent-note">Photos shared with guardian consent. Faces and names are blurred.</p>
+      <a class="next" href="#community">Community →</a>
+    </section>
+
+    <section class="view" id="view-community" data-view="community" aria-label="Community" hidden>
+      <h2 class="view-title">Learning together</h2>
+      <p class="lead2">Good teaching lasts when teachers learn from one another and pass it on. These are the communities where I have learned to design, question, and share lessons, and where my questions about technology took shape.</p>
+
+      <nav class="toc" aria-label="On this page"><p class="toc-label">On this page · click to jump</p><ol><li><button type="button" data-jump="cm-1">Designing lessons with colleagues</button></li><li><button type="button" data-jump="cm-2">CASD</button></li><li><button type="button" data-jump="cm-3">Sodam</button></li><li><button type="button" data-jump="cm-teach">Teaching Sodam</button></li><li><button type="button" data-jump="cm-4">Sodam's outreach</button></li><li><button type="button" data-jump="cm-5">AI SDGs hackathon</button></li><li><button type="button" data-jump="cm-6">House of Hope</button></li><li><button type="button" data-jump="cm-7">Gosan Library camps</button></li><li><button type="button" data-jump="cm-8">Sweden and Finland</button></li><li><button type="button" data-jump="cm-9">AI courseware and AIDT</button></li></ol></nav>
+      <ol class="timeline">
+        <li class="proj" id="cm-1">
+          <span class="tag">Namdaegu Elementary School · 2023–now</span>
+          <h3>Designing lessons with colleagues</h3>
+          <p class="gist">Every inquiry project I have taught since 2023 was designed with colleagues and reshaped by their questions.</p>
+          <p class="desc">At my school, grade-level teams co-design four inquiry projects each year. We refine each plan in meetings with colleagues and school leaders, present it to the whole faculty before teaching, revise it in response to their questions, and share the results afterward. With two classes per grade, my team is two teachers; I design our projects and now also serve as grade-level lead. Every project on my <a href="#classroom">Classroom</a> page went through this cycle. In one recent example, colleagues warned that studying inventors' values would leave students simply saying "we should be considerate," so we added value dilemmas, and students wrestled with values far more seriously. Another teacher pointed me to a local invention education center, whose support let students 3D-print their prototypes. When our school hosted the first Future School Lesson Sharing Day in 2026, I presented that project to teachers from across Daegu, and our team's lesson sharing received the district Superintendent's Award.</p>
+          <div class="pics three">
+            <figure><img src="c_present.jpg" alt="Dayoung presenting the Inventions That Carry Value project to visiting teachers" loading="lazy"><figcaption>Presenting the project at the first Future School Lesson Sharing Day, 2026.</figcaption></figure>
+            <figure><img src="c_qr3d.jpg" alt="3D-printed QR emergency information tags designed by students" loading="lazy"><figcaption>Students' 3D-printed QR emergency tags for older adults (sample information).</figcaption></figure>
+            <figure><img src="c_meeting.jpg" alt="Teachers and school leaders in a planning meeting around a table" loading="lazy"><figcaption>A planning meeting with fifth- and sixth-grade teachers and school leaders.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj" id="cm-2">
+          <span class="tag">CASD · 2023–now</span>
+          <h3>CASD: the research group that keeps me learning</h3>
+          <p class="gist">The teachers' research group that first trained me as a preservice teacher, and now keeps pushing me to design for the people in front of me.</p>
+          <p class="desc">CASD (Computing at School in Daegu) is a research group of elementary teachers who study and share computing education. Founded in 2015, it has grown to about 80 teachers working in schools, education offices, research institutes, and universities. Its members were the alumni teachers who trained Sodam, so I learned from them as a preservice teacher and joined formally once I began teaching in 2023. I now work alongside them on joint lesson research, teacher workshops, camps and hackathons, and teaching materials. We have often stayed until 2 a.m. planning a workshop, and I left those nights happy rather than tired. What I learned most from senior members is to design for the people in front of me. When I prepared a video-editing workshop for kindergarten teachers, I planned to reuse an earlier lesson. A senior member asked who these teachers were: busy people who make their own materials and squeeze workshops into their schedules. So I redesigned it so each participant would leave with a finished graduation video. The same habit of asking "how can this be better?" shaped a lesson-design hackathon we ran with Microsoft Korea for preservice teachers. We opened it with an escape-room camp, and as word spread, participation at Daegu National University of Education grew from about 20 to 50. The program later expanded to Korea National University of Education, Hanyang University, and Jeonju National University of Education.</p>
+          <div class="pics">
+            <figure><img src="c_casd_meet.jpg" alt="CASD teachers gathered around tables in an evening meeting" loading="lazy"><figcaption>An evening CASD meeting, one of many that ran late into the night.</figcaption></figure>
+            <figure><img src="c_casd_plan.jpg" alt="Teachers standing in front of a large screen reviewing a plan together" loading="lazy"><figcaption>Reviewing a workshop plan together on screen.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj" id="cm-3">
+          <span class="tag">Daegu National University of Education · 2019–2025</span>
+          <h3>Sodam: a preservice teachers' SW/AI education club</h3>
+          <p class="gist">I built a peer-training system so club members could keep learning from one another between alumni teachers' sessions.</p>
+          <p class="desc">Sodam is a club of preservice teachers at Daegu National University of Education who teach software and AI to children. Alumni teachers generously led our training, but as full-time teachers they could not always find time. As president, I wanted members to keep learning between those sessions. In 2021, four classmates and I began teaching newer members every week, from robot coding tools and Scratch to HTML/CSS, Photoshop, and Premiere Pro. Those members went on to teach the next cohorts, so the club could keep learning on its own, and we became stronger partners when we ran booths with alumni teachers at national events such as the Korea Science Festival and the Software Education Festival. Membership grew from 30 to 70. During the pandemic, we joined the Naver Connect Foundation's university mentor program to teach AI and software to elementary students, online at Yongnam Elementary School in Gyeongnam and in person at Dalsan Elementary School in Daegu. After becoming a teacher, I returned to teach the club, taking on the role that had once trained me. Its members now teach the monthly class at House of Hope.</p>
+          <div class="pics">
+            <figure><img src="c_sodam_booth.jpg" alt="Six Sodam members in white hoodies at an AI education booth" loading="lazy"><figcaption>Running an AI education booth with Sodam members at the 2021 Education Donation Expo in Ilsan.</figcaption></figure>
+            <figure><img src="c_sodam_zoom.jpg" alt="Sodam mentors on a Zoom call during an online AI class" loading="lazy"><figcaption>An online AI class with the Naver Connect Foundation mentor program, 2021.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj" id="cm-teach">
+          <span class="tag">Daegu National University of Education · 2023–2025</span>
+          <h3>Teaching Sodam as an alumni instructor</h3>
+          <p class="gist">After graduating, I came back to teach the club that trained me, and to help its members design lessons of their own.</p>
+          <p class="desc">From 2023 to 2025, I returned to Sodam as an alumni instructor, the role alumni teachers had once played for me. My sessions ranged widely: inquiry-based and concept-based lesson design, robot coding, AI, and practical tools such as video editing and Canva. I also shared SW/AI lessons from my own classroom so members could see how these ideas worked with real children. The sessions did not end with listening. Members designed their own lessons and shared them with one another for feedback, the same cycle of designing, sharing, and revising that I practice with colleagues at my school.</p>
+          <div class="pics three">
+            <figure><img src="c_lec_hall.jpg" alt="Dayoung presenting on stage to club members in a university auditorium" loading="lazy"><figcaption>A session for club members in the university auditorium.</figcaption></figure>
+            <figure><img src="c_lec_ai.jpg" alt="Dayoung pointing to a lesson slide in a computer lab" loading="lazy"><figcaption>Walking members through an AI lesson on sea creatures and ocean trash, from unplugged sorting to training a classifier.</figcaption></figure>
+            <figure><img src="c_sodam_teach.jpg" alt="Dayoung teaching club members in a computer lab" loading="lazy"><figcaption>Teaching members to build with Python and AI tools.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj" id="cm-4">
+          <span class="tag">Gyeongdong Elementary School and beyond · 2023</span>
+          <h3>Sodam's outreach: from one school to the community</h3>
+          <p class="gist">As an alumni mentor, I helped Sodam turn a year of school volunteering into SW/AI events for families and a national expo.</p>
+          <p class="desc">Running SW/AI booths at schools and national events has been part of Sodam since I joined in 2019, and the club still does it today. In 2023, as an alumni mentor, I worked with Sodam's preservice teachers on a year-long SW/AI volunteer program at Gyeongdong Elementary School, the largest elementary school in Daegu, where many members could teach at once. The lessons we developed there grew into larger events the same year: a digital education flea market at the school, an outdoor SW/AI festival for children and parents, and a booth at the national Education Donation Expo at KINTEX. In one activity, children programmed robots to guide endangered animals to safe habitats threatened by climate change, connecting coding to a problem they cared about.</p>
+          <div class="pics three">
+            <figure><img src="c_gd_robot.jpg" alt="Children at a robot activity table under a banner about animal habitats and climate change" loading="lazy"><figcaption>"Where is your home?": coding robots to lead endangered animals to safe habitats.</figcaption></figure>
+            <figure><img src="c_gd_kintex.jpg" alt="Children and preservice teachers at laptops in a large expo hall" loading="lazy"><figcaption>Sodam's booth at the Education Donation Expo, KINTEX, 2023.</figcaption></figure>
+            <figure><img src="c_gd_market.jpg" alt="Dayoung with Sodam members in front of a Gyeongdong digital education flea market banner" loading="lazy"><figcaption>The Gyeongdong digital education flea market team.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj" id="cm-5">
+          <span class="tag">AI X Moonshot · 2023</span>
+          <h3>An AI SDGs hackathon for young innovators</h3>
+          <p class="gist">I co-designed a hackathon handbook so mentors could see and record how students were thinking, not only what they built.</p>
+          <p class="desc">In 2023, CASD (Computing at School in Daegu), a research group of practicing teachers connected to Sodam, planned and ran a hackathon at the AI SDGs Camp, organized with WFUNA and partners. About 50 students in grades 4 to 6, in ten teams, used software and AI to tackle the UN Sustainable Development Goals. I co-designed the camp handbook with the group's teachers, coordinated the Sodam preservice teachers who supported the event, and mentored teams during the hackathon. The handbook guided teams through five steps: finding a problem, generating ideas, modeling the solution as a flowchart, prototyping, and sharing. At each step, mentors asked questions to check students' thinking, such as why a team chose a problem, and recorded teams' classifications, choices, and discussions in a digital portfolio for process-oriented assessment. Looking back, it was an early version of the question I now study: how teachers can see the thinking behind students' work.</p>
+          <div class="pics">
+            <figure><img src="c_sdgs.jpg" alt="Three students holding SDG signs at the AI SDGs Camp photo wall" loading="lazy"><figcaption>Students at the AI SDGs Camp for youth innovators.</figcaption></figure>
+            <figure><img src="c_sdgs_handbook.jpg" alt="A handbook page showing step 1 with key questions, mentor questions, and a digital portfolio prompt" loading="lazy"><figcaption>A page from the camp handbook: key questions, mentor questions, and a portfolio record for each step.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj" id="cm-6">
+          <span class="tag">House of Hope · 2023–now</span>
+          <h3>A monthly computing and AI class</h3>
+          <p class="gist">A class I started alone in 2023 is now taught every month by preservice teachers I mentor.</p>
+          <p class="desc">In March 2023, I began teaching a monthly computing and AI class at House of Hope, a residential care home. By mid-2023, preservice teachers from Sodam had taken over the teaching, and I became their mentor. Each month, a small team plans the lesson with me in two preparation meetings, teaches a two-hour Saturday class for about ten children of mixed ages, and writes a reflection afterward. Lessons have ranged from robot coding and micro:bit projects to generative AI, Minecraft, and a game about human rights.</p>
+          <div class="pics">
+            <figure><img src="c_hope2023.jpg" alt="Dayoung teaching children at a classroom table" loading="lazy"><figcaption>March 2023: the first classes, which I taught myself.</figcaption></figure>
+            <figure><img src="c_hope_prep.jpg" alt="Dayoung mentoring three preservice teachers as they plan a lesson at a cafe table" loading="lazy"><figcaption>Mentoring Sodam preservice teachers as they plan a lesson.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj" id="cm-7">
+          <span class="tag">Gosan Library · 2025</span>
+          <h3>Computing and robotics camps for local children</h3>
+          <p class="gist">With a team of seven teachers, I taught hands-on robotics and coding camps for elementary children at a public library.</p>
+          <p class="desc">In 2025, I joined a team of seven teachers to run a series of library programs for elementary children in the community. In a February maker camp, children built a robotic hand from the joints of their own hands, then programmed robots to solve problems. In a June eco-explorers program, I led sessions on technology for the environment: children designed alternative-energy vehicles and robots to tackle problems such as ocean waste, then built and coded working models with LEGO SPIKE Prime. In a summer dinosaur school, younger children programmed small robots to travel across dinosaur maps they decorated themselves.</p>
+          <div class="pics">
+            <figure><img src="c_gosan_spike.jpg" alt="A child holding a LEGO SPIKE Prime robotic gripper that picks up a snack" loading="lazy"><figcaption>Eco explorers, June 2025: a child's SPIKE Prime gripper, coded to pick up and move objects.</figcaption></figure>
+            <figure><img src="c_gosan.jpg" alt="Tablets with block code beside small robots on a dinosaur grid map" loading="lazy"><figcaption>Dinosaur school, summer 2025: coding a robot's path across a map children decorated.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj" id="cm-8">
+          <span class="tag">Stockholm and Helsinki · December 2024</span>
+          <h3>Learning from schools in Sweden and Finland</h3>
+          <p class="gist">Swedish schools taught me to ask what technology should help students do, not whether to use it.</p>
+          <p class="desc">In December 2024, as a winner of the national Digital Education Research Competition, I joined a KERIS delegation of 46 educators and officials visiting schools in Stockholm and Helsinki. I expected classrooms built around devices. At Hagsätraskolan in Stockholm, the principal instead opened with a slide titled "A turnaround": within a year, Sweden's government had moved from encouraging digital schoolwork to restricting it and was funding printed textbooks. When we asked about Korea's push for AI and digital literacy, he did not reject technology. He said schools should use it where it is truly needed, for a clear purpose, rather than assume every lesson requires a device. That became the lesson I brought home: technology belongs in a lesson only when it genuinely helps students learn. I returned as AI Digital Textbooks were rolling out across Korea, asking less whether to use technology and more what it should help students do.</p>
+          <div class="pics">
+            <figure><img src="c_turnaround.jpg" alt="A principal presenting a slide titled A turnaround to visiting teachers" loading="lazy"><figcaption>Hagsätraskolan, Stockholm: the principal's slide, "A turnaround."</figcaption></figure>
+            <figure><img src="c_vastertorp.jpg" alt="A school atrium with a mural, red sofas, and bookshelves" loading="lazy"><figcaption>Västertorpsskolan, Stockholm. Students have laptops from grade 4, but staff told us devices are used only when a lesson needs them. Printed books still sit at the heart of the school.</figcaption></figure>
+          </div>
+        </li>
+        <li class="proj" id="cm-9">
+          <span class="tag">Namdaegu Elementary School · 2024–now</span>
+          <h3>AI courseware and AI Digital Textbooks at my school</h3>
+          <p class="gist">Colleagues and I saw AI analyses that did not match students' work, and that became my research question.</p>
+          <p class="desc">Because I often helped colleagues with technology, I took on AI courseware at my school in 2024. That year I led a team that won KRW 5 million (about USD 3,700) through the Daegu Metropolitan Office of Education's AI Courseware Practice School program, using AI courseware for flipped learning and collaborative projects with 45 third and fifth graders. I also ran free workshops for colleagues on using AI courseware well. Our report concluded that digital tools alone do not build students' motivation or understanding; teachers' close support remains essential. When AI Digital Textbooks arrived, our school adopted them for third- and fourth-grade math and English in 2025, and for fifth and sixth grade in 2026. Colleagues raised the same concern I had: the textbooks' analyses of students often did not match what we saw in their work. When the textbooks' legal status changed to supplementary material, our school debated whether to keep using them at all. Those conversations shaped the question at the center of my research: how can AI help teachers see what students' work actually shows?</p>
+        </li>
+      </ol>
+      <p class="consent-note">Photos shared with consent. Faces of children and colleagues are blurred.</p>
       <a class="next" href="#teaching">Teaching &amp; CV →</a>
     </section>
 
@@ -655,6 +800,13 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
   window.addEventListener('hashchange', function () { render(current()); });
   window.addEventListener('popstate', function () { render(current()); });
   render(current());
+
+  document.querySelectorAll('[data-jump]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = document.getElementById(b.dataset.jump);
+      if (t) { try { t.scrollIntoView({behavior: 'smooth', block: 'start'}); } catch (e) { t.scrollIntoView(); } }
+    });
+  });
 
   document.querySelectorAll('[data-email]').forEach(function (btn) {
     btn.addEventListener('click', function () {
