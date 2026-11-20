@@ -306,6 +306,14 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
 .proj .pics.three { grid-template-columns: 1fr 1fr 1fr; }
 .proj p.desc em { font-style: italic; }
 .toc { margin: 0 0 34px; padding: 14px 0 4px; border-top: 1px solid rgba(0,0,0,.12); border-bottom: 1px solid rgba(0,0,0,.12); }
+    .aside { margin: 56px 0 0; padding-top: 18px; border-top: 1px solid rgba(0,0,0,.12); color: #5b6470; font-size: 14.5px; line-height: 1.65; max-width: 64ch; }
+    .proj .pics img.fit { object-fit: contain; background: #fff; }
+    .aside p { margin: 0; }
+    .aside-pics { display: flex; gap: 12px; margin-top: 14px; }
+    .aside-pics figure { margin: 0; width: 150px; }
+    .aside-pics img { width: 150px; height: 188px; object-fit: cover; border-radius: 4px; display: block; }
+    .aside-pics figcaption { font-family: var(--mono); font-size: 11px; color: #888; margin-top: 5px; line-height: 1.4; }
+    .aside-label { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #777; margin-bottom: 6px; }
     .toc-label { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #777; margin: 0 0 8px; }
     .toc ol { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 32px; counter-reset: toc; }
     .toc li { counter-increment: toc; break-inside: avoid; margin: 0 0 8px; }
@@ -405,6 +413,13 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
           <li><span class="q">Question 2</span>How do teachers decide whether to accept, revise, or hold an AI interpretation until more evidence is available?</li>
         </ol>
       <a class="next" href="#research">See my research →</a>
+      <div class="aside">
+        <p><span class="aside-label">Outside the classroom</span>I love traveling to visit museums, galleries, and historic buildings, and seeing how each country tells its own history. At home, I take ballet classes and play the piano and violin.</p>
+        <div class="aside-pics">
+          <figure><img src="o_krumlov.jpg" alt="Dayoung on a terrace overlooking the red roofs and castle tower of Český Krumlov" loading="lazy"><figcaption>Český Krumlov, Czech Republic</figcaption></figure>
+          <figure><img src="o_ballet.jpg" alt="Dayoung at the barre in a ballet studio" loading="lazy"><figcaption>Ballet class</figcaption></figure>
+        </div>
+      </div>
     </section>
 
     <section class="view" id="view-research" data-view="research" aria-label="Research" hidden>
@@ -521,6 +536,12 @@ blockquote footer { margin-top: 12px; font-size: 14px; color: var(--muted); }
           <p class="ko">영재교육원 알고리즘 탐구 수업</p>
           <p class="gist">Students felt the need for an algorithm before they were given one, then worked out for themselves when greedy choices succeed and when they fail.</p>
           <p class="desc">At the gifted education center of Daegu National University of Education, I co-designed the year's informatics curriculum with fellow instructors and designed and taught its algorithm unit for two classes: 20 students in Daegu over 12 sessions and 6 in Gyeongbuk over 8. Instead of opening with a definition, I gave students problems that grew larger and more repetitive, such as robot paths, navigation routes, coin change, reservation scheduling, and Kruskal's algorithm, so that solving them by hand began to feel inefficient. Their own questions after the first activity became the inquiry question for the unit. Students recorded strategies on paper first, compared them with peers, and tested them in simulations that made exhaustive and greedy search visible. They coded the coin-change rule in Python on Google Colab and adapted it to U.S. cents and even Zimbabwean dollars. They also met coin systems where the greedy rule breaks. Finally, they organized every case in one table and concluded that a greedy algorithm works only when its selection criterion fits the structure of the problem. <a href="https://prayer123333.my.canva.site/dahozletwgq" target="_blank" rel="noopener">Full portfolio →</a></p>
+          <div class="pics">
+            <figure><img class="fit" src="g_questions.jpg" alt="A board of sticky notes with students' questions about greedy algorithms" loading="lazy"><figcaption>Students' own questions after the robot path activity, which shaped the unit's inquiry question. Names removed.</figcaption></figure>
+            <figure><img class="fit" src="g_sim.jpg" alt="An interactive simulation of greedy route-finding from Haenam to Seoul" loading="lazy"><figcaption>An interactive simulation that makes greedy route-finding visible one choice at a time.</figcaption></figure>
+            <figure><img src="g_kruskal.jpg" alt="Students leaning over a table comparing hand-drawn network diagrams" loading="lazy"><figcaption>Comparing hand-drawn networks before running Kruskal's algorithm.</figcaption></figure>
+            <figure><img src="g_class.jpg" alt="Dayoung leading a class of students working on laptops" loading="lazy"><figcaption>Sharing strategies with the whole class.</figcaption></figure>
+          </div>
         </li>
         <li class="proj">
           <span class="tag">2025 · Grade 1 · Winter</span>
